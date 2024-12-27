@@ -5,6 +5,7 @@ Esta aplicación está diseñada para ayudar a asociaciones sin fines de lucro e
 
 ## Tools
 - **Go**: The programming language used to build the API.
+- **Gin**: A web framework written in Go, used to build the API's HTTP server.
 - **GORM**: An ORM library for Go, used for interacting with the database.
 - **Docker**: Used for containerizing the application, ensuring consistency across different environments.
 - **PostgreSQL**: The relational database management system used to store data.

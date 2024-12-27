@@ -1,8 +1,10 @@
 package routes
 
 import (
-	"encoding/json"
-	"net/http"
+	"os"
+
+	"github.com/gin-contrib/cors"
+	"github.com/gin-gonic/gin"
 )
 
 type Response struct {
@@ -10,17 +12,23 @@ type Response struct {
 }
 
 // RegisterRoutes registers all routes for the application
-func RegisterRoutes() *http.ServeMux {
-	mux := http.NewServeMux()
+func RegisterRoutes() *gin.Engine {
+	router := gin.Default()
+
+	// CORS
+	allowedOrigins := os.Getenv("ALLOWED_ORIGINS")
+
+	router.Use(cors.New(cors.Config{
+		AllowOrigins: []string{allowedOrigins},
+		AllowMethods: []string{"GET", "POST", "PUT", "DELETE"},
+		AllowHeaders: []string{"Origin", "Content-Type"},
+	}))
 
 	// Define the root route
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		response := Response{Message: "Welcome to my Go API! 🚀"}
-		json.NewEncoder(w).Encode(response)
+	router.GET("/", func(c *gin.Context) {
+		response := Response{Message: "Connected to the API"}
+		c.JSON(200, response)
 	})
 
-	// Add more routes here as needed
-
-	return mux
+	return router
 }

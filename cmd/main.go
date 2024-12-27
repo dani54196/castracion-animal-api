@@ -2,7 +2,6 @@ package main
 
 import (
 	"log"
-	"net/http"
 
 	"github.com/joho/godotenv"
 
@@ -25,8 +24,7 @@ func main() {
 	router := routes.RegisterRoutes()
 
 	// Start the server
-	log.Println("Server is running on port 8080")
-	if err := http.ListenAndServe(":8080", router); err != nil {
-		log.Fatalf("Could not start server: %s\n", err)
+	if err := router.Run(":8080"); err != nil {
+		log.Fatalf("Failed to run server: %v", err)
 	}
 }
