@@ -26,7 +26,7 @@ func RegisterRoutes() *gin.Engine {
 
 	// Define the root route
 	router.GET("/", func(c *gin.Context) {
-		response := Response{Message: "Connected to the API"}
+		response := Response{Message: "Connected to the API ✅"}
 		c.JSON(200, response)
 	})
 
