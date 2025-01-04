@@ -19,7 +19,7 @@ func InitDB() error {
 	password := os.Getenv("POSTGRES_PASSWORD")
 	dbName := os.Getenv("POSTGRES_DB")
 	port := os.Getenv("POSTGRES_PORT")
-	host := "localhost" // Assuming the database is hosted locally
+	host := os.Getenv("POSTGRES_HOST")
 
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", host, user, password, dbName, port)
 	if dsn == "" {
