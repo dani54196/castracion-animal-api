@@ -13,11 +13,18 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - postgres_network
+      - backend_app_network
+
+  redis:
+    image: redis:7
+    ports:
+      - "${REDIS_PORT}:6379"
+    networks:
+      - backend_app_network
 
 volumes:
   postgres_data:
 
 networks:
-  postgres_network:
+  backend_app_network:
     driver: bridge
