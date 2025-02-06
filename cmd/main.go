@@ -7,6 +7,7 @@ import (
 
 	"castracion-animal-api/internal/db"
 	"castracion-animal-api/internal/routes"
+	"castracion-animal-api/internal/handlers"
 )
 
 func main() {
@@ -21,7 +22,9 @@ func main() {
 	}
 
 	// Register routes
-	router := routes.RegisterRoutes()
+	userController := &handlers.UserController{}
+
+	router := routes.RegisterRoutes(userController)
 
 	// Start the server
 	if err := router.Run(":8080"); err != nil {

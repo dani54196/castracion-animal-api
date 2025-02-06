@@ -6,10 +6,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func RegisterUserRoutes(router *gin.Engine, userController *handlers.UserController) {
-	userRoutes := handlers.Group("/users")
+func UserRoutes(router *gin.Engine, userController *handlers.UserController) {
+	userRoutes := router.Group("/users")
 	{
-		userRoutes.GET("/", userController.GetAllUsers)
-		userRoutes.POST("/", userController.CreateUser)
+		userRoutes.GET("/", func(c *gin.Context) {
+			c.JSON(200, gin.H{"message": "all users"})
+		})
+		userRoutes.POST("/", func(c *gin.Context) {
+			c.JSON(200, gin.H{"message": "user created"})
+		})
 	}
 }

@@ -5,6 +5,7 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"castracion-animal-api/internal/handlers" // Import the handlers package
 )
 
 type Response struct {
@@ -12,7 +13,7 @@ type Response struct {
 }
 
 // RegisterRoutes registers all routes for the application
-func RegisterRoutes() *gin.Engine {
+func RegisterRoutes(userController *handlers.UserController) *gin.Engine {
 	router := gin.Default()
 
 	// CORS
@@ -29,6 +30,9 @@ func RegisterRoutes() *gin.Engine {
 		response := Response{Message: "Connected to the API ✅"}
 		c.JSON(200, response)
 	})
+
+	// Register user routes
+	RegisterUserRoutes(router, userController)
 
 	return router
 }
