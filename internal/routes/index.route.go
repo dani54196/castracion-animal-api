@@ -3,9 +3,10 @@ package routes
 import (
 	"os"
 
+	"castracion-animal-api/internal/handlers" // Import the handlers package
+
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"castracion-animal-api/internal/handlers" // Import the handlers package
 )
 
 type Response struct {
@@ -32,7 +33,7 @@ func RegisterRoutes(userController *handlers.UserController) *gin.Engine {
 	})
 
 	// Register user routes
-	RegisterUserRoutes(router, userController)
+	UserRoutes(router, userController)
 
 	return router
 }

@@ -1,5 +1,5 @@
 # Logs
-tmp
+tmp/
 .env
 # Editor directories and files
 .vscode/*
