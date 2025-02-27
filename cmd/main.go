@@ -6,8 +6,8 @@ import (
 	"github.com/joho/godotenv"
 
 	"castracion-animal-api/internal/db"
-	"castracion-animal-api/internal/routes"
 	"castracion-animal-api/internal/handlers"
+	"castracion-animal-api/internal/routes"
 )
 
 func main() {
@@ -22,9 +22,9 @@ func main() {
 	}
 
 	// Register routes
-	userController := &handlers.UserController{}
+	userHandler := &handlers.UserController{}
 
-	router := routes.RegisterRoutes(userController)
+	router := routes.RegisterRoutes(userHandler)
 
 	// Start the server
 	if err := router.Run(":8080"); err != nil {
